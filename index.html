@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Redirection...</title>
   <script>
-    const res = await fetch("https://lamprey-emerging-mink.ngrok-free.app/")
-    if(res.status !== 200) {
-      alert("Serveur hors ligne.\nRéessayer plus tard.")
-    }
-    else {
-      window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
-    }
+    window.addEventListener('DOMContentLoaded', async () => {
+      
+      const res = await fetch("https://lamprey-emerging-mink.ngrok-free.app/")
+      if (res.status !== 200) {
+        alert("Serveur hors ligne.\nRéessayer plus tard.")
+      }
+      else {
+        window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
+      }
+
+    })
   </script>
 </head>
+
 <body>
   <p>Redirection en cours...</p>
 </body>
+
 </html>

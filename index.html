@@ -10,35 +10,39 @@
         const res = await fetch("https://lamprey-emerging-mink.ngrok-free.app/", {
           method: "GET",  // Méthode de requête GET (par défaut)
           headers: {
-            "Content-Type": "application/json"  // Facultatif, selon votre API
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420"
           }
         });
 
-        if (!res.ok) {
-          // Si le statut de la réponse est différent de 2xx
-          throw new Error(`Erreur ${res.status}: Le serveur semble être hors ligne.`);
-        }
+    if (!res.ok) {
+      // Si le statut de la réponse est différent de 2xx
+      throw new Error(`Erreur ${res.status}: Le serveur semble être hors ligne.`);
+    }
 
-        // Si la réponse est OK (code 200)
-        console.log("Serveur en ligne, redirection...");
-        window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
+    // Si la réponse est OK (code 200)
+    console.log("Serveur en ligne, redirection...");
+    window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
 
       } catch (error) {
-        // En cas d'erreur (réseau, serveur hors ligne, etc.)
-        console.error(error.message);
-        alert("Serveur hors ligne. Veuillez réessayer plus tard.");
-        const a = document.getElementById("text")
-        a.textContent = "Réessayer"
-        a.setAttribute("href", "")
+      // En cas d'erreur (réseau, serveur hors ligne, etc.)
+      console.error(error.message);
+      alert("Serveur hors ligne. Veuillez réessayer plus tard.");
+      const a = document.getElementById("text")
+      a.textContent = "Réessayer"
+      a.setAttribute("href", "")
+      const doc = document.getElementById("doc")
+      doc.textContent = "Besoin d'aide ?"
 
-      }
+    }
     });
 
   </script>
 </head>
 
 <body>
-  <a id="text">Redirection en cours...</p>
+  <a id="text">Redirection en cours...</a><br><br>
+  <a id="doc" href="doc.html"></a>
 </body>
 
 </html>

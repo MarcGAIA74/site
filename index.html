@@ -6,21 +6,39 @@
   <title>Redirection...</title>
   <script>
     window.addEventListener('DOMContentLoaded', async () => {
-      
-      const res = await fetch("https://lamprey-emerging-mink.ngrok-free.app/")
-      if (res.status !== 200) {
-        alert("Serveur hors ligne.\nRéessayer plus tard.")
-      }
-      else {
-        window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
-      }
+      try {
+        const res = await fetch("https://lamprey-emerging-mink.ngrok-free.app/", {
+          method: "GET",  // Méthode de requête GET (par défaut)
+          headers: {
+            "Content-Type": "application/json"  // Facultatif, selon votre API
+          }
+        });
 
-    })
+        if (!res.ok) {
+          // Si le statut de la réponse est différent de 2xx
+          throw new Error(`Erreur ${res.status}: Le serveur semble être hors ligne.`);
+        }
+
+        // Si la réponse est OK (code 200)
+        console.log("Serveur en ligne, redirection...");
+        window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
+
+      } catch (error) {
+        // En cas d'erreur (réseau, serveur hors ligne, etc.)
+        console.error(error.message);
+        alert("Serveur hors ligne. Veuillez réessayer plus tard.");
+        const a = document.getElementById("text")
+        a.textContent = "Réessayer"
+        a.setAttribute("href", "")
+
+      }
+    });
+
   </script>
 </head>
 
 <body>
-  <p>Redirection en cours...</p>
+  <a id="text">Redirection en cours...</p>
 </body>
 
 </html>

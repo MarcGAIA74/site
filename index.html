@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <title>Redirection...</title>
   <script>
-    // Exemple simple : redirection vers un lien ngrok fixe
-    // Pour une redirection dynamique, voir la version avec API plus bas
-    window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
+    const res = await fetch("https://lamprey-emerging-mink.ngrok-free.app/")
+    if(res.status !== 200) {
+      alert("Serveur hors ligne.\nRéessayer plus tard.")
+    }
+    else {
+      window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
+    }
   </script>
 </head>
 <body>

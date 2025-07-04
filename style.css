@@ -36,12 +36,17 @@ h5 {
 }
 .content {
     padding-left: 10px ;
+    padding-bottom: 100px;
 }
 .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     background: #eee;
     margin-top: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
+    width: 100vw;
     text-align: center;
     display: inline-block; /* Ajoute ce style pour qu'il s'ajuste à la largeur du contenu */
     box-sizing: border-box; /* Pour prendre en compte padding et bordures dans la largeur */
@@ -69,13 +74,13 @@ body {
     margin-right: 1rem;
 }
 
-@media (min-width: 850px) {
+@media (min-width: 700px) {
     html {
         font-size: 20px;
     }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 700px) {
     html {
         font-size: 27.5px;
     }

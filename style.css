@@ -65,8 +65,8 @@ body {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    min-height: 100vh; /* Assure que le footer se place en bas de la page */
-    min-width: 100vw; /* Assure que le footer se place en bas de la page */
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 @media (min-width: 850px) {
@@ -77,6 +77,6 @@ body {
 
 @media (max-width: 850px) {
     html {
-        font-size: 30px;
+        font-size: 27.5px;
     }
 }

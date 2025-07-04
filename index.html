@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Redirection...</title>
   <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     window.addEventListener('DOMContentLoaded', async () => {
       try {
@@ -16,26 +17,26 @@
           }
         });
 
-    if (!res.ok) {
-      // Si le statut de la réponse est différent de 2xx
-      throw new Error(`Erreur ${res.status}: Le serveur semble être hors ligne.`);
-    }
+        if (!res.ok) {
+          // Si le statut de la réponse est différent de 2xx
+          throw new Error(`Erreur ${res.status}: Le serveur semble être hors ligne.`);
+        }
 
-    // Si la réponse est OK (code 200)
-    console.log("Serveur en ligne, redirection...");
-    window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
+        // Si la réponse est OK (code 200)
+        console.log("Serveur en ligne, redirection...");
+        window.location.href = "https://lamprey-emerging-mink.ngrok-free.app/";
 
       } catch (error) {
-      // En cas d'erreur (réseau, serveur hors ligne, etc.)
-      console.error(error.message);
-      alert("Serveur hors ligne. Veuillez réessayer plus tard.");
-      const a = document.getElementById("text")
-      a.textContent = "Réessayer"
-      a.setAttribute("href", "")
-      const doc = document.getElementById("doc")
-      doc.textContent = "Besoin d'aide ?"
+        // En cas d'erreur (réseau, serveur hors ligne, etc.)
+        console.error(error.message);
+        alert("Serveur hors ligne. Veuillez réessayer plus tard.");
+        const a = document.getElementById("text")
+        a.textContent = "Réessayer"
+        a.setAttribute("href", "")
+        const doc = document.getElementById("doc")
+        doc.textContent = "Besoin d'aide ?"
 
-    }
+      }
     });
 
   </script>

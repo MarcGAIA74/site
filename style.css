@@ -5,27 +5,23 @@ h1 {
     font-weight: normal;
 
 }
-
 h2 {
     font-size: 1.35rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-weight: normal;
 }
-
 h3 {
     font-size: 1.15rem;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     font-weight: normal;
 }
-
 h4 {
     font-size: 0.75rem;
     font-weight: normal;
     margin: 0;
 }
-
 h5 {
     font-size: 0.5rem;
     font-weight: normal;
@@ -39,32 +35,38 @@ h5 {
     margin-bottom: 1rem;
 }
 .content {
-    flex: 1;
     padding-left: 10px ;
 }
 .footer {
-    width: 100%;
     background: #eee;
     margin-top: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
+    display: inline-block; /* Ajoute ce style pour qu'il s'ajuste à la largeur du contenu */
+    box-sizing: border-box; /* Pour prendre en compte padding et bordures dans la largeur */
 }
 
 a {
-    line-gap-override: 0.3rem;
-    white-space: pre;
+    word-wrap: break-word; /* Pour couper les mots longs qui ne peuvent pas être divisé */
+    overflow-wrap: break-word; /* Alternative moderne pour gérer les longs mots */
+    word-break: break-word; /* Pour éviter qu'un mot trop long dépasse */
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
     text-decoration: none;
     margin: 0;
 }
 
-html, body {
-    min-height: 100%;
+body {
     display: flex;
     flex-direction: column;
     font-family: 'Segoe UI';
     background-color: aliceblue;
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
+    min-height: 100vh; /* Assure que le footer se place en bas de la page */
+    min-width: 100vw; /* Assure que le footer se place en bas de la page */
 }
 
 @media (min-width: 850px) {
@@ -75,6 +77,6 @@ html, body {
 
 @media (max-width: 850px) {
     html {
-        font-size: 30px !important;
+        font-size: 30px;
     }
 }

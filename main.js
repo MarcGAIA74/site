@@ -78,13 +78,26 @@ class searchBar {
 
     search() {
         //Vérifie le mot envoyé
-        const word = simplifyString(this.doc.getElementById("bar").value)
-        console.log(word)
-        if (word === "")
+        /**
+         * @type {string}
+         */
+        let input = simplifyString(this.doc.getElementById("bar").value)
+
+        if (input[input.length - 1] === " ")
+            input = input.slice(0, input.length - 1)
+        console.log(input)
+        if (input === "")
             return
+        const word = input
 
         //Supprime la dernière recherche
+        const high_light = this.doc.getElementsByClassName("high_light")[0]
         const elements = Array.from(this.doc.getElementsByClassName("find_by_search_bar"))
+        if (high_light) {
+            let stringClass = high_light.getAttribute("class")
+            stringClass = stringClass.replace("high_light", "")
+            high_light.setAttribute("class", stringClass)
+        }
         elements.forEach(function (element) {
             let stringClass = element.getAttribute("class")
             stringClass = stringClass.replace("find_by_search_bar", "")
@@ -133,7 +146,7 @@ class searchBar {
         if (!el)
             return
 
-        el.setAttribute("class", "find_by_search_bar highLight")
+        el.setAttribute("class", "find_by_search_bar high_light")
         el.scrollIntoView({ behavior: "smooth" }); // Scroll fluide
     }
 

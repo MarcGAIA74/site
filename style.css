@@ -5,23 +5,27 @@ h1 {
     font-weight: normal;
 
 }
+
 h2 {
     font-size: 1.35rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     font-weight: normal;
 }
+
 h3 {
     font-size: 1.15rem;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     font-weight: normal;
 }
+
 h4 {
     font-size: 0.75rem;
     font-weight: normal;
     margin: 0;
 }
+
 h5 {
     font-size: 0.5rem;
     font-weight: normal;
@@ -34,10 +38,12 @@ h5 {
     border: 2px solid #e0e0e0;
     margin-bottom: 1rem;
 }
+
 .content {
-    padding-left: 10px ;
+    padding-left: 10px;
     padding-bottom: 100px;
 }
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -48,8 +54,10 @@ h5 {
     padding-bottom: 10px;
     width: 100vw;
     text-align: center;
-    display: inline-block; /* Ajoute ce style pour qu'il s'ajuste à la largeur du contenu */
-    box-sizing: border-box; /* Pour prendre en compte padding et bordures dans la largeur */
+    display: inline-block;
+    /* Ajoute ce style pour qu'il s'ajuste à la largeur du contenu */
+    box-sizing: border-box;
+    /* Pour prendre en compte padding et bordures dans la largeur */
 }
 
 .search_bar {
@@ -59,14 +67,15 @@ h5 {
     background: #eee;
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 200px;
+    width: 300px;
     text-align: center;
-    display: inline-block; /* Ajoute ce style pour qu'il s'ajuste à la largeur du contenu */
-    box-sizing: border-box; /* Pour prendre en compte padding et bordures dans la largeur */
+    display: inline-block;
+    box-sizing: border-box;
     align-items: center;
     border-radius: 5px;
 }
 .search_bar input {
+    width: 275px;
     padding: 5px;
     border-radius: 5px;
 }
@@ -74,14 +83,44 @@ h5 {
     padding: 5px;
     border-radius: 5px;
 }
+
 .high_light {
     background-color: rgba(255, 255, 0, 0.5);
 }
 
+.showable {
+    animation: showable 1s ease-out forwards;
+}
+.hiddenable {
+    animation: hiddenable 1s ease-out forwards;
+}
+
+@keyframes showable {
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+@keyframes hiddenable {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.2;
+    }
+}
+
 a {
-    word-wrap: break-word; /* Pour couper les mots longs qui ne peuvent pas être divisé */
-    overflow-wrap: break-word; /* Alternative moderne pour gérer les longs mots */
-    word-break: break-word; /* Pour éviter qu'un mot trop long dépasse */
+    word-wrap: break-word;
+    /* Pour couper les mots longs qui ne peuvent pas être divisé */
+    overflow-wrap: break-word;
+    /* Alternative moderne pour gérer les longs mots */
+    word-break: break-word;
+    /* Pour éviter qu'un mot trop long dépasse */
     margin-top: 0.1rem;
     margin-bottom: 0.1rem;
     text-decoration: none;

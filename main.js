@@ -5,8 +5,6 @@ let search_bar
 window.addEventListener('DOMContentLoaded', async () => {
     addFooter()
     search_bar = new searchBar(document)
-
-
 })
 
 function addFooter() {
@@ -38,6 +36,38 @@ function simplifyString(string) {
         .toLowerCase();                     // Convertit en minuscules
 }
 
+class Showable {
+    /**
+     * 
+     * @param {Document} document 
+     * @param {Element} element 
+     */
+    constructor(document, button, element) {
+        this.doc = document
+        this.content = element
+        this.button = button
+
+        this.state = "show"
+
+        this.button.addEventListener("click", () => {
+            if(this.state === "show") {
+                this.content.classList.remove("showable")
+                void this.content.offsetWidth; // force un recalcul
+                this.content.classList.add("hiddenable")
+                this.state = "hidden"
+            } else if(this.state === "hidden") {
+                this.content.classList.remove("hiddenable")
+                void this.content.offsetWidth; // force un recalcul
+                this.content.classList.add("showable")
+                this.state = "show"
+            }
+                
+                
+
+        })
+    }
+}
+
 class searchBar {
     /**
      * 
@@ -45,35 +75,42 @@ class searchBar {
      */
     constructor(document) {
         this.doc = document
-        this.data = document.body.getElementsByClassName("content")[0]
+        this.data = this.doc.body.getElementsByClassName("content")[0]
         this.item_nb = 0
         this.item_index = 0
 
-        const div = document.createElement("div")
-        div.setAttribute("class", "search_bar")
+        this.div = this.doc.createElement("div")
+        this.div.classList.add("search_bar")
 
-        const input = document.createElement("input")
+        const input = this.doc.createElement("input")
         input.setAttribute("id", "bar")
         input.setAttribute("type", "text")
-        div.appendChild(input)
+        input.setAttribute("placeholder", "Rechercher un mot/phrase")
+        this.div.appendChild(input)
 
-        const button = document.createElement("button")
+        const button = this.doc.createElement("button")
         button.setAttribute("id", "search")
         button.textContent = "Rechercher"
         button.addEventListener('click', () => {
             this.search()
         })
-        div.appendChild(button)
+        this.div.appendChild(button)
 
-        const button2 = document.createElement("button")
+        const button2 = this.doc.createElement("button")
         button2.setAttribute("id", "next_search")
         button2.textContent = "Suivant"
         button2.addEventListener('click', () => {
             this.next()
         })
-        div.appendChild(button2)
+        this.div.appendChild(button2)
 
-        document.body.appendChild(div)
+        const button3 = this.doc.createElement("button")
+        button3.setAttribute("id", "close_search")
+        button3.textContent = "Cacher/Montrer"
+        this.div.appendChild(button3)
+        this.showable = new Showable(document, button3, this.div)
+
+        this.doc.body.appendChild(this.div)
     }
 
     search() {
@@ -85,7 +122,6 @@ class searchBar {
 
         if (input[input.length - 1] === " ")
             input = input.slice(0, input.length - 1)
-        console.log(input)
         if (input === "")
             return
         const word = input
@@ -94,14 +130,10 @@ class searchBar {
         const high_light = this.doc.getElementsByClassName("high_light")[0]
         const elements = Array.from(this.doc.getElementsByClassName("find_by_search_bar"))
         if (high_light) {
-            let stringClass = high_light.getAttribute("class")
-            stringClass = stringClass.replace("high_light", "")
-            high_light.setAttribute("class", stringClass)
+            high_light.classList.remove("high_light")
         }
         elements.forEach(function (element) {
-            let stringClass = element.getAttribute("class")
-            stringClass = stringClass.replace("find_by_search_bar", "")
-            element.setAttribute("class", stringClass)
+            element.classList.remove("find_by_search_bar")
         });
 
         //Cherche le mot dans les textContent
@@ -109,7 +141,7 @@ class searchBar {
         children.forEach((child) => {
             const text = simplifyString(child.textContent)
             if (text.includes(word)) {
-                child.setAttribute("class", "find_by_search_bar")
+                child.classList.add("find_by_search_bar")
             }
             if (child.children.length === 0)
                 return
@@ -131,7 +163,7 @@ class searchBar {
         parent.forEach(function (child) {
             const text = simplifyString(child.textContent)
             if (text.includes(word)) {
-                child.setAttribute("class", "find_by_search_bar")
+                child.classList.add("find_by_search_bar")
             }
             if (child.children.length === 0)
                 return
@@ -140,20 +172,21 @@ class searchBar {
     }
 
     scroll() {
-        const els = document.querySelectorAll(".find_by_search_bar");
+        const els = this.doc.querySelectorAll(".find_by_search_bar");
         const el = els[this.item_index]
 
         if (!el)
             return
 
-        el.setAttribute("class", "find_by_search_bar high_light")
+        el.classList.add("find_by_search_bar")
+        el.classList.add("high_light")
         el.scrollIntoView({ behavior: "smooth" }); // Scroll fluide
     }
 
     next() {
-        const els = document.querySelectorAll(".find_by_search_bar");
+        const els = this.doc.querySelectorAll(".find_by_search_bar");
         const el = els[this.item_index]
-        el.setAttribute("class", "find_by_search_bar")
+        el.classList.remove("high_light")
 
         if ((this.item_index + 1) < this.item_nb)
             this.item_index++
@@ -162,4 +195,6 @@ class searchBar {
 
         this.scroll()
     }
+
+    getElement() { return this.div }
 }

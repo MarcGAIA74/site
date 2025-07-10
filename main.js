@@ -16,10 +16,10 @@ function addFooter() {
     l1.appendChild(l11)
     //<a>🔗 <a href="index.html">Accéder au site</a></a>
     footer.appendChild(l1)
-    const h4 = document.createElement("h4")
-    h4.textContent = "Outil développé par Marc FRECHOU-RENAULT pour l'associsation GAIA74"
+    const h5 = document.createElement("h5")
+    h5.textContent = "Outil développé par Marc FRECHOU-RENAULT pour l'associsation GAIA74"
     //<h4>Outil développé par Marc FRECHOU-RENAULT pour l'associsation GAIA74</h4>
-    footer.appendChild(h4)
+    footer.appendChild(h5)
     //<div class="footer">
     //    <a>🔗 <a href="index.html">Accéder au site</a></a><br>
     //    <h4>Outil développé par Marc FRECHOU-RENAULT pour l'associsation GAIA74</h4>

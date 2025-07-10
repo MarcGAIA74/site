@@ -52,6 +52,32 @@ h5 {
     box-sizing: border-box; /* Pour prendre en compte padding et bordures dans la largeur */
 }
 
+.search_bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #eee;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 200px;
+    text-align: center;
+    display: inline-block; /* Ajoute ce style pour qu'il s'ajuste à la largeur du contenu */
+    box-sizing: border-box; /* Pour prendre en compte padding et bordures dans la largeur */
+    align-items: center;
+    border-radius: 5px;
+}
+.search_bar input {
+    padding: 5px;
+    border-radius: 5px;
+}
+.search_bar button {
+    padding: 5px;
+    border-radius: 5px;
+}
+.highLight {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+
 a {
     word-wrap: break-word; /* Pour couper les mots longs qui ne peuvent pas être divisé */
     overflow-wrap: break-word; /* Alternative moderne pour gérer les longs mots */

@@ -89,10 +89,10 @@ h5 {
 }
 
 .showable {
-    animation: showable 1s ease-out forwards;
+    animation: showable 0.5s ease-out forwards;
 }
 .hiddenable {
-    animation: hiddenable 1s ease-out forwards;
+    animation: hiddenable 0.5s ease-out forwards;
 }
 
 @keyframes showable {

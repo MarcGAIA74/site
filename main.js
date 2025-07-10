@@ -50,21 +50,32 @@ class Showable {
         this.state = "show"
 
         this.button.addEventListener("click", () => {
-            if(this.state === "show") {
-                this.content.classList.remove("showable")
-                void this.content.offsetWidth; // force un recalcul
-                this.content.classList.add("hiddenable")
-                this.state = "hidden"
-            } else if(this.state === "hidden") {
-                this.content.classList.remove("hiddenable")
-                void this.content.offsetWidth; // force un recalcul
-                this.content.classList.add("showable")
-                this.state = "show"
+            if (this.state === "show") {
+                this.goTo("hidden")
+            } else if (this.state === "hidden") {
+                this.goTo("show")
             }
-                
-                
+
+
 
         })
+    }
+
+    /**
+     * 
+     * @param {"show" | "hidden"} state 
+     */
+    goTo(state) {
+        this.state = state
+        if (this.state === "hidden") {
+            this.content.classList.remove("showable")
+            void this.content.offsetWidth; // force un recalcul
+            this.content.classList.add("hiddenable")
+        } else if (this.state === "show") {
+            this.content.classList.remove("hiddenable")
+            void this.content.offsetWidth; // force un recalcul
+            this.content.classList.add("showable")
+        }
     }
 }
 
@@ -109,6 +120,7 @@ class searchBar {
         button3.textContent = "Cacher/Montrer"
         this.div.appendChild(button3)
         this.showable = new Showable(document, button3, this.div)
+        this.showable.goTo("hidden")
 
         this.doc.body.appendChild(this.div)
     }

@@ -42,9 +42,10 @@ class Showable {
      * @param {Document} document 
      * @param {Element} element 
      */
-    constructor(document, button, element) {
+    constructor(document, button, inactive, element) {
         this.doc = document
         this.content = element
+        this.inactive = inactive
         this.button = button
 
         this.state = "show"
@@ -68,13 +69,30 @@ class Showable {
     goTo(state) {
         this.state = state
         if (this.state === "hidden") {
-            this.content.classList.remove("showable")
+            this.content.classList.remove("show")
             void this.content.offsetWidth; // force un recalcul
-            this.content.classList.add("hiddenable")
-        } else if (this.state === "show") {
-            this.content.classList.remove("hiddenable")
+            this.content.classList.add("hidden")
+            if (!Array.isArray(this.inactive)) {
+                this.inactive.style.pointerEvents = 'none'
+                return
+            }
+            this.inactive.forEach(function (items) {
+                items.style.pointerEvents = 'none'
+                return
+            });
+
+        } if (this.state === "show") {
+            this.content.classList.remove("hidden")
             void this.content.offsetWidth; // force un recalcul
-            this.content.classList.add("showable")
+            this.content.classList.add("show")
+            if (!Array.isArray(this.inactive)) {
+                this.inactive.style.pointerEvents = 'auto'
+                return
+            }
+            this.inactive.forEach(function (items) {
+                items.style.pointerEvents = 'auto'
+                return
+            });
         }
     }
 }
@@ -119,7 +137,7 @@ class searchBar {
         button3.setAttribute("id", "close_search")
         button3.textContent = "Cacher/Montrer"
         this.div.appendChild(button3)
-        this.showable = new Showable(document, button3, this.div)
+        this.showable = new Showable(document, button3, [input,button,button2] , this.div)
         this.showable.goTo("hidden")
 
         this.doc.body.appendChild(this.div)
